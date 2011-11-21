@@ -180,7 +180,9 @@
         if (!erro) {
           var resultado = calcular[funcao](valores);
           $resultado.text(resultado.replace('.', ','));
-          window.scroll(0, body.scrollHeight);
+          setTimeout(function () {
+            scroll(0, body.scrollHeight);
+          }, 100);
         }
       });
 
