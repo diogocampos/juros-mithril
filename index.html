@@ -21,6 +21,7 @@
   <script type="text/javascript" src="lib/jquery.mobile-1.0.min.js"></script>
 
   <style type="text/css">
+    a span { font-size: 110%; }
     li.resultado { text-align: center; }
     span.resultado { font-size: 150%; }
     span.resultado .valor { color: red; font-size: 150%; }
@@ -31,11 +32,11 @@
 
   <div data-role="page" id="juros">
 
-    <div data-role="header" data-id="tabs">
+    <div data-role="header" data-id="nav">
       <div data-role="navbar">
         <ul>
-          <li><a href="#juros" class="ui-btn-active ui-state-persist">Juros</a></li>
-          <li><a href="#parcela">Parcela</a></li>
+          <li><a href="#juros" data-icon="checkbox-on" class="ui-btn-active ui-state-persist"><span>Juros</span></a></li>
+          <li><a href="#parcela" data-icon="checkbox-off"><span>Parcela</span></a></li>
         </ul>
       </div>
     </div>
@@ -73,11 +74,11 @@
 
   <div data-role="page" id="parcela">
 
-    <div data-role="header" data-id="tabs">
+    <div data-role="header" data-id="nav">
       <div data-role="navbar">
         <ul>
-          <li><a href="#juros">Juros</a></li>
-          <li><a href="#parcela" class="ui-btn-active ui-state-persist">Parcela</a></li>
+          <li><a href="#juros" data-icon="checkbox-off"><span>Juros</span></a></li>
+          <li><a href="#parcela" data-icon="checkbox-on" class="ui-btn-active ui-state-persist"><span>Parcela</span></a></li>
         </ul>
       </div>
     </div>

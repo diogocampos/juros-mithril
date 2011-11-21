@@ -1,7 +1,12 @@
 CACHE MANIFEST
-# 7698e4c
+# 7ba5b46
 
 index.html
 lib/jquery-1.6.4.min.js
 lib/jquery.mobile-1.0.min.css
 lib/jquery.mobile-1.0.min.js
+lib/images/ajax-loader.png
+lib/images/icons-18-black.png
+lib/images/icons-18-white.png
+lib/images/icons-36-black.png
+lib/images/icons-36-white.png
