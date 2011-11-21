@@ -130,7 +130,7 @@
 
   <script type="text/javascript">
 
-    var calcular = {
+    var funcoes = {
 
       juros: function (v) {
         var valor = v.total - v.entrada;
@@ -166,13 +166,13 @@
 
     };
 
-    ['juros', 'parcela'].forEach(function (funcao) {
+    $.each(funcoes, function (nome, calculo) {
 
       var body = $('body')[0];
-      var $inputs = $('#'+funcao).find('input[type="number"]');
-      var $limpar = $('#'+funcao+'-limpar');
-      var $calcular = $('#'+funcao+'-calcular');
-      var $resultado = $('#'+funcao+'-resultado');
+      var $inputs = $('#'+nome).find('input[type="number"]');
+      var $limpar = $('#'+nome+'-limpar');
+      var $calcular = $('#'+nome+'-calcular');
+      var $resultado = $('#'+nome+'-resultado');
 
       $inputs.bind('change', function () {
         $resultado.text('');
@@ -201,7 +201,7 @@
         });
 
         if (!erro) {
-          var resultado = calcular[funcao](valores);
+          var resultado = calculo(valores);
           $resultado.text(resultado.replace('.', ','));
           setTimeout(function () {
             scroll(0, body.scrollHeight);
