@@ -13,10 +13,14 @@
 
   <link rel="stylesheet" href="lib/jquery.mobile-1.0.min.css" />
   <script type="text/javascript" src="lib/jquery-1.6.4.min.js"></script>
+  <script type="text/javascript">
+    $(document).bind('mobileinit', function () {
+      $.mobile.defaultPageTransition = 'none';
+    });
+  </script>
   <script type="text/javascript" src="lib/jquery.mobile-1.0.min.js"></script>
 
   <style type="text/css">
-    body { background-color: #222; }
     li.resultado { text-align: center; }
     span.resultado { font-size: 150%; }
     span.resultado .valor { color: red; font-size: 150%; }
@@ -25,83 +29,101 @@
 </head>
 <body>
 
-  <div data-role="page" id="main" data-theme="a">
+  <div data-role="page" id="juros">
+
+    <div data-role="header" data-id="tabs">
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#juros" class="ui-btn-active ui-state-persist">Juros</a></li>
+          <li><a href="#parcela">Parcela</a></li>
+        </ul>
+      </div>
+    </div>
 
     <div data-role="content">
+      <ul data-role="listview">
+        <li data-role="fieldcontain">
+          <label for="juros-total">Total à vista:</label>
+          <input type="number" id="juros-total" name="total" />
+        </li>
+        <li data-role="fieldcontain">
+          <label for="juros-entrada">Entrada:</label>
+          <input type="number" id="juros-entrada" name="entrada" value="0" />
+        </li>
+        <li data-role="fieldcontain">
+          <label for="juros-periodo">Quantidade de parcelas:</label>
+          <input type="number" id="juros-periodo" name="periodo" />
+        </li>
+        <li data-role="fieldcontain">
+          <label for="juros-parcela">Valor da parcela:</label>
+          <input type="number" id="juros-parcela" name="parcela" />
+        </li>
+        <li data-theme="b">
+          <button type="button" id="juros-calcular">Calcular</button>
+        </li>
+        <li class="resultado" data-theme="e">
+          <span class="resultado">
+            Taxa de juros: <span class="valor" id="juros-resultado"></span>
+          </span>
+        </li>
+      </ul>
+    </div>
 
-      <div id="juros" data-role="collapsible" data-theme="b" data-content-theme="c">
-        <h3>Taxa de Juros</h3>
-        <ul data-role="listview" data-inset="true">
-          <li data-role="fieldcontain">
-            <label for="juros-total">Total à vista:</label>
-            <input type="number" id="juros-total" name="total" />
-          </li>
-          <li data-role="fieldcontain">
-            <label for="juros-entrada">Entrada:</label>
-            <input type="number" id="juros-entrada" name="entrada" value="0" />
-          </li>
-          <li data-role="fieldcontain">
-            <label for="juros-periodo">Quantidade de parcelas:</label>
-            <input type="number" id="juros-periodo" name="periodo" />
-          </li>
-          <li data-role="fieldcontain">
-            <label for="juros-parcela">Valor da parcela:</label>
-            <input type="number" id="juros-parcela" name="parcela" />
-          </li>
-          <li data-theme="b">
-            <button type="button" id="juros-calcular">Calcular</button>
-          </li>
-          <li class="resultado" data-theme="e">
-            <span class="resultado">
-              Taxa de juros: <span class="valor" id="juros-resultado"></span>
-            </span>
-          </li>
+  </div><!-- /page -->
+
+  <div data-role="page" id="parcela">
+
+    <div data-role="header" data-id="tabs">
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#juros">Juros</a></li>
+          <li><a href="#parcela" class="ui-btn-active ui-state-persist">Parcela</a></li>
         </ul>
       </div>
+    </div>
 
-      <div id="parcela" data-role="collapsible" data-theme="b" data-content-theme="c">
-        <h3>Valor da Parcela</h3>
-        <ul data-role="listview" data-inset="true">
-          <li data-role="fieldcontain">
-            <label for="parcela-total">Total à vista:</label>
-            <input type="number" id="parcela-total" name="total" />
-          </li>
-          <li data-role="fieldcontain">
-            <label for="parcela-entrada">Entrada:</label>
-            <input type="number" id="parcela-entrada" name="entrada" value="0" />
-          </li>
-          <li data-role="fieldcontain">
-            <label for="parcela-periodo">Quantidade de parcelas:</label>
-            <input type="number" id="parcela-periodo" name="periodo" />
-          </li>
-          <li data-role="fieldcontain">
-            <label for="parcela-juros">Taxa de juros:</label>
-            <input type="number" id="parcela-juros" name="juros" />
-          </li>
-          <li data-theme="b">
-            <button type="button" id="parcela-calcular">Calcular</button>
-          </li>
-          <li class="resultado" data-theme="e">
-            <span class="resultado">
-              Valor da parcela: <span class="valor" id="parcela-resultado"></span>
-            </span>
-          </li>
-        </ul>
-      </div>
+    <div data-role="content">
+      <ul data-role="listview">
+        <li data-role="fieldcontain">
+          <label for="parcela-total">Total à vista:</label>
+          <input type="number" id="parcela-total" name="total" />
+        </li>
+        <li data-role="fieldcontain">
+          <label for="parcela-entrada">Entrada:</label>
+          <input type="number" id="parcela-entrada" name="entrada" value="0" />
+        </li>
+        <li data-role="fieldcontain">
+          <label for="parcela-periodo">Quantidade de parcelas:</label>
+          <input type="number" id="parcela-periodo" name="periodo" />
+        </li>
+        <li data-role="fieldcontain">
+          <label for="parcela-juros">Taxa de juros:</label>
+          <input type="number" id="parcela-juros" name="juros" />
+        </li>
+        <li data-theme="b">
+          <button type="button" id="parcela-calcular">Calcular</button>
+        </li>
+        <li class="resultado" data-theme="e">
+          <span class="resultado">
+            Valor da parcela: <span class="valor" id="parcela-resultado"></span>
+          </span>
+        </li>
+      </ul>
+    </div>
 
-    </div> <!-- content -->
-
-  </div> <!-- page -->
+  </div><!-- /page -->
 
   <script type="text/javascript">
 
     var calcular = {
+
       juros: function (v) {
         var valor = v.total - v.entrada;
-        var it = 0, min = 0, max = 1000;
-        var juros, erro, achou = false;
+        var iter = 0, min = 0, max = 1000;
+        var juros, parcela, erro;
+        var achou = false;
 
-        while ((it++) < 1000) {
+        while ((iter++) < 1000) {
           juros = (min + max) / 2;
           parcela = valor * juros / (1 - 1 / Math.pow(1 + juros, v.periodo));
           erro = parcela - v.parcela;
@@ -119,47 +141,49 @@
         }
         return (achou) ? (juros * 100).toFixed(4) + '%' : '?';
       },
+
       parcela: function (v) {
         var valor = v.total - (v.entrada || 0);
         var juros = v.juros / 100;
         var parcela = valor * juros / (1 - 1 / Math.pow(1 + juros, v.periodo));
         return 'R$' + parcela.toFixed(2);
       }
+
     };
 
-    $('#main').live('pageinit', function () {
-      ['juros', 'parcela'].forEach(function (funcao) {
+    ['juros', 'parcela'].forEach(function (funcao) {
 
-        var $inputs = $('#'+funcao).find('input[type="number"]');
-        var $botao = $('#'+funcao+'-calcular');
-        var $resultado = $('#'+funcao+'-resultado');
+      var body = $('body')[0];
+      var $inputs = $('#'+funcao).find('input[type="number"]');
+      var $botao = $('#'+funcao+'-calcular');
+      var $resultado = $('#'+funcao+'-resultado');
 
-        $inputs.bind('change', function () {
-          $resultado.text('');
-        });
+      $inputs.bind('change', function () {
+        $resultado.text('');
+      });
 
-        $botao.bind('click', function () {
-          $resultado.text('');
-          var valores = {};
+      $botao.bind('click', function () {
+        $resultado.text('');
+        var valores = {};
 
-          var erro = $inputs.toArray().some(function (input) {
-            var valor = parseFloat(input.value.replace(',', '.'));
-            if (isNaN(valor)) {
-              input.focus();
-              return true;
-            }
-            else {
-              valores[input.name] = valor;
-            }
-          });
-
-          if (!erro) {
-            var resultado = calcular[funcao](valores);
-            $resultado.text(resultado.replace('.', ','));
+        var erro = $inputs.toArray().some(function (input) {
+          var valor = parseFloat(input.value.replace(',', '.'));
+          if (isNaN(valor)) {
+            input.focus();
+            return true;
+          }
+          else {
+            valores[input.name] = valor;
           }
         });
 
+        if (!erro) {
+          var resultado = calcular[funcao](valores);
+          $resultado.text(resultado.replace('.', ','));
+          window.scroll(0, body.scrollHeight);
+        }
       });
+
     });
 
   </script>
