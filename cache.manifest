@@ -1,7 +1,9 @@
 CACHE MANIFEST
-# 5eddd13
+# 43cdfe6
 
 default.png
+icon.png
+icon@2x.png
 index.html
 lib/jquery-1.6.4.min.js
 lib/jquery.mobile-1.0.min.css
