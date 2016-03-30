@@ -10,128 +10,99 @@ init = ->
 
 
 body = ->
+  tabs =
+    'juros': 'Juros'
+    'parcela': 'Parcela'
+
   m 'div', [
 
-    m '#juros', 'data-role': 'page', [
-
-      m 'div', 'data-role': 'header', [
-        m 'div', 'data-role': 'navbar', [
-          m 'ul', [
-            m 'li', [
-              m 'a.ui-btn-active.ui-state-persist',
-                href: '#juros'
-                'data-icon': 'checkbox-on'
-                m 'span', 'Juros'
-            ]
-            m 'li', [
-              m 'a', href: '#parcela', 'data-icon': 'checkbox-off',
-                m 'span', 'Parcela'
-            ]
-          ]
-        ]
+    page '#juros',
+      header: tabBar {tabs, active: 'juros'}
+      content: calculator 'ul', [
+        field 'li', page: 'juros', name: 'total', 'Total à vista'
+        field 'li', page: 'juros', name: 'entrada', value: '0', 'Entrada'
+        field 'li', page: 'juros', name: 'periodo', 'Quantidade de parcelas'
+        field 'li', page: 'juros', name: 'parcela', 'Valor da parcela'
+        buttons 'li', page: 'juros'
+        result 'li', page: 'juros', label: 'Taxa de juros'
       ]
 
-      m 'div', 'data-role': 'content', [
-        m 'ul', 'data-role': 'listview', [
-          m 'li', 'data-role': 'fieldcontain', [
-            m 'label', for: 'juros-total', 'Total à vista'
-            m 'input#juros-total', type: 'number', name: 'total'
-          ]
-          m 'li', 'data-role': 'fieldcontain', [
-            m 'label', for: 'juros-entrada', 'Entrada'
-            m 'input#juros-entrada',
-              type: 'number', name: 'entrada', placeholder: '0'
-          ]
-          m 'li', 'data-role': 'fieldcontain', [
-            m 'label', for: 'juros-periodo', 'Quantidade de parcelas'
-            m 'input#juros-periodo', type: 'number', name: 'periodo'
-          ]
-          m 'li', 'data-role': 'fieldcontain', [
-            m 'label', for: 'juros-parcela', 'Valor da parcela'
-            m 'input#juros-parcela', type: 'number', name: 'parcela'
-          ]
-          m 'li', [
-            m 'fieldset.ui-grid-a', [
-              m '.ui-block-a', [
-                m 'button#juros-limpar', type: 'button', 'Limpar'
-              ]
-              m '.ui-block-b', [
-                m 'button#juros-calcular', type: 'button', 'data-theme': 'b',
-                  'Calcular'
-              ]
-            ]
-          ]
-          m 'li.resultado', 'data-theme': 'e', [
-            m 'span.resultado', [
-              "Taxa de juros: "
-              m 'span.valor', id: "juros-resultado"
-            ]
-          ]
-        ]
+    page '#parcela',
+      header: tabBar {tabs, active: 'parcela'}
+      content: calculator 'ul', [
+        field 'li', page: 'parcela', name: 'total', 'Total à vista'
+        field 'li', page: 'parcela', name: 'entrada', value: '0', 'Entrada'
+        field 'li', page: 'parcela', name: 'periodo', 'Quantidade de parcelas'
+        field 'li', page: 'parcela', name: 'juros', 'Taxa de juros'
+        buttons 'li', page: 'parcela'
+        result 'li', page: 'parcela', label: 'Valor da parcela'
       ]
 
-    ]  # div#juros
-
-    m '#parcela', 'data-role': 'page', [
-
-      m 'div', 'data-role': 'header', [
-        m 'div', 'data-role': 'navbar', [
-          m 'ul', [
-            m 'li', [
-              m 'a', href: '#juros', 'data-icon': 'checkbox-off',
-                m 'span', 'Juros'
-            ]
-            m 'li', [
-              m 'a.ui-btn-active.ui-state-persist',
-                href: '#parcela'
-                'data-icon': 'checkbox-on'
-                m 'span', 'Parcela'
-            ]
-          ]
-        ]
-      ]
-
-      m 'div', 'data-role': 'content', [
-        m 'ul', 'data-role': 'listview', [
-          m 'li', 'data-role': 'fieldcontain', [
-            m 'label', for: 'parcela-total', 'Total à vista'
-            m 'input#parcela-total', type: 'number', name: 'total'
-          ]
-          m 'li', 'data-role': 'fieldcontain', [
-            m 'label', for: 'parcela-entrada', 'Entrada'
-            m 'input#parcela-entrada',
-              type: 'number', name: 'entrada', placeholder: '0'
-          ]
-          m 'li', 'data-role': 'fieldcontain', [
-            m 'label', for: 'parcela-periodo', 'Quantidade de parcelas'
-            m 'input#parcela-periodo', type: 'number', name: 'periodo'
-          ]
-          m 'li', 'data-role': 'fieldcontain', [
-            m 'label', for: 'parcela-juros', 'Taxa de juros'
-            m 'input#parcela-juros', type: 'number', name: 'juros'
-          ]
-          m 'li', [
-            m 'fieldset.ui-grid-a', [
-              m '.ui-block-a', [
-                m 'button#parcela-limpar', type: 'button', 'Limpar'
-              ]
-              m '.ui-block-b', [
-                m 'button#parcela-calcular', type: 'button', 'data-theme': 'b',
-                  'Calcular'
-              ]
-            ]
-          ]
-          m 'li.resultado', 'data-theme': 'e', [
-            m 'span.resultado', [
-              "Valor da parcela: "
-              m 'span.valor', id: "parcela-resultado"
-            ]
-          ]
-        ]
-      ]
-
-    ]  # div#parcela
   ]
+
+
+page = (selector, {header, content}) ->
+  m selector, 'data-role': 'page', [
+    m 'div', 'data-role': 'header', header
+    m 'div', 'data-role': 'content', content
+  ]
+
+
+tabBar = ({active, tabs}) ->
+  m 'div', 'data-role': 'navbar',
+    m 'ul',
+      for id, label of tabs
+        tab 'li', for: id, active: (id is active), label
+
+
+tab = (selector, options, label) ->
+  attrs = href: "##{options.for}"
+
+  if options.active
+    attrs['data-icon'] = 'checkbox-on'
+    attrs.class = 'ui-btn-active ui-state-persist'
+  else
+    attrs['data-icon'] = 'checkbox-off'
+
+  m selector,
+    m 'a', attrs,
+      m 'span', label
+
+
+calculator = (selector, children) ->
+  m selector, 'data-role': 'listview',
+    children
+
+
+field = (selector, {page, name, value}, label) ->
+  id = "#{page}-#{name}"
+
+  attrs = {id, name, type: 'number'}
+  attrs.placeholder = value if value?
+
+  m selector, 'data-role': 'fieldcontain', [
+    m 'label', for: id, label
+    m 'input', attrs
+  ]
+
+
+buttons = (selector, {page}) ->
+  m selector,
+    m 'fieldset.ui-grid-a', [
+      m '.ui-block-a',
+        m 'button', type: 'button', id: "#{page}-limpar", 'Limpar'
+      m '.ui-block-b',
+        m 'button', type: 'button', id: "#{page}-calcular", 'data-theme': 'b',
+          'Calcular'
+    ]
+
+
+result = (selector, {page, label}) ->
+  m selector, class: 'resultado', 'data-theme': 'e',
+    m 'span.resultado', [
+      "#{label}: "
+      m 'span.valor', id: "#{page}-resultado"
+    ]
 
 
 init()
