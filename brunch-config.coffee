@@ -13,7 +13,10 @@ exports.config =
 
   modules:
     autoRequire:
-      'app.js': ['index']
+      'app.js': ['main']
+
+  npm:
+    enabled: true
 
   server:
     hostname: '0.0.0.0'

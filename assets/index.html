@@ -14,14 +14,6 @@
   <link rel="apple-touch-startup-image" href="default.png" />
 
   <link rel="stylesheet" href="lib/jquery.mobile-1.0.min.css" />
-  <script type="text/javascript" src="lib/jquery-1.6.4.min.js"></script>
-  <script type="text/javascript">
-    $(document).bind('mobileinit', function () {
-      $.mobile.defaultPageTransition = 'none';
-    });
-  </script>
-  <script type="text/javascript" src="lib/jquery.mobile-1.0.min.js"></script>
-
   <style type="text/css">
     a span { font-size: 110%; }
     li.resultado { text-align: center; }
@@ -32,105 +24,18 @@
 </head>
 <body>
 
-  <div data-role="page" id="juros">
+  <div id="app-root"></div>
 
-    <div data-role="header">
-      <div data-role="navbar">
-        <ul>
-          <li><a href="#juros" data-icon="checkbox-on" class="ui-btn-active ui-state-persist"><span>Juros</span></a></li>
-          <li><a href="#parcela" data-icon="checkbox-off"><span>Parcela</span></a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div data-role="content">
-      <ul data-role="listview">
-        <li data-role="fieldcontain">
-          <label for="juros-total">Total à vista</label>
-          <input type="number" id="juros-total" name="total" />
-        </li>
-        <li data-role="fieldcontain">
-          <label for="juros-entrada">Entrada</label>
-          <input type="number" id="juros-entrada" name="entrada" value="0" />
-        </li>
-        <li data-role="fieldcontain">
-          <label for="juros-periodo">Quantidade de parcelas</label>
-          <input type="number" id="juros-periodo" name="periodo" />
-        </li>
-        <li data-role="fieldcontain">
-          <label for="juros-parcela">Valor da parcela</label>
-          <input type="number" id="juros-parcela" name="parcela" />
-        </li>
-        <li>
-          <fieldset class="ui-grid-a">
-            <div class="ui-block-a">
-              <button type="button" id="juros-limpar">Limpar</button>
-            </div>
-            <div class="ui-block-b">
-              <button type="button" id="juros-calcular" data-theme="b">Calcular</button>
-            </div>
-          </fieldset>
-        </li>
-        <li class="resultado" data-theme="e">
-          <span class="resultado">
-            Taxa de juros: <span class="valor" id="juros-resultado"></span>
-          </span>
-        </li>
-      </ul>
-    </div>
-
-  </div><!-- /page -->
-
-  <div data-role="page" id="parcela">
-
-    <div data-role="header">
-      <div data-role="navbar">
-        <ul>
-          <li><a href="#juros" data-icon="checkbox-off"><span>Juros</span></a></li>
-          <li><a href="#parcela" data-icon="checkbox-on" class="ui-btn-active ui-state-persist"><span>Parcela</span></a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div data-role="content">
-      <ul data-role="listview">
-        <li data-role="fieldcontain">
-          <label for="parcela-total">Total à vista</label>
-          <input type="number" id="parcela-total" name="total" />
-        </li>
-        <li data-role="fieldcontain">
-          <label for="parcela-entrada">Entrada</label>
-          <input type="number" id="parcela-entrada" name="entrada" value="0" />
-        </li>
-        <li data-role="fieldcontain">
-          <label for="parcela-periodo">Quantidade de parcelas</label>
-          <input type="number" id="parcela-periodo" name="periodo" />
-        </li>
-        <li data-role="fieldcontain">
-          <label for="parcela-juros">Taxa de juros</label>
-          <input type="number" id="parcela-juros" name="juros" />
-        </li>
-        <li>
-          <fieldset class="ui-grid-a">
-            <div class="ui-block-a">
-              <button type="button" id="parcela-limpar">Limpar</button>
-            </div>
-            <div class="ui-block-b">
-              <button type="button" id="parcela-calcular" data-theme="b">Calcular</button>
-            </div>
-          </fieldset>
-        </li>
-        <li class="resultado" data-theme="e">
-          <span class="resultado">
-            Valor da parcela: <span class="valor" id="parcela-resultado"></span>
-          </span>
-        </li>
-      </ul>
-    </div>
-
-  </div><!-- /page -->
-
+  <script type="text/javascript" src="vendor.js"></script>
   <script type="text/javascript" src="app.js"></script>
+
+  <script type="text/javascript" src="lib/jquery-1.6.4.min.js"></script>
+  <script type="text/javascript">
+    $(document).bind('mobileinit', function () {
+      $.mobile.defaultPageTransition = 'none';
+    });
+  </script>
+  <script type="text/javascript" src="lib/jquery.mobile-1.0.min.js"></script>
 
 </body>
 </html>

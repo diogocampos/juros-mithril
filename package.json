@@ -1,5 +1,8 @@
 {
   "private": true,
+  "dependencies": {
+    "mithril": "^0.2.3"
+  },
   "devDependencies": {
     "brunch": "^2.5.3",
     "clean-css-brunch": "^2.0.0",
