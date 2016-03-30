@@ -5,7 +5,7 @@ watch: node_modules/ clean
 	./node_modules/.bin/brunch watch --server
 
 clean:
-	rm public/*.{css,html,js}
+	rm -f public/*.{css,html,js}
 
 
 node_modules/: package.json
