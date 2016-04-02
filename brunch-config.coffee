@@ -5,18 +5,24 @@ exports.config =
   files:
     javascripts:
       joinTo:
-        'app.js': /^app/
-        'vendor.js': /^(?!app)/
+        'js/app.js': /^app/
+        'js/vendor.js': /^(?!app)/
 
     stylesheets:
-      joinTo: 'vendor.css'
+      joinTo: 'css/vendor.css'
 
   modules:
     autoRequire:
-      'app.js': ['main']
+      'js/app.js': ['main']
 
   npm:
-    enabled: true
+    styles:
+      'font-awesome': ['css/font-awesome.css']
+      'bulma': ['css/bulma.css']
+
+  plugins:
+    assetsmanager: copyTo:
+      'fonts': ['node_modules/font-awesome/fonts/*']
 
   server:
     hostname: '0.0.0.0'

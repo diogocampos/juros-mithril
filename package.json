@@ -1,9 +1,12 @@
 {
   "private": true,
   "dependencies": {
+    "bulma": "0.0.17",
+    "font-awesome": "^4.5.0",
     "mithril": "^0.2.3"
   },
   "devDependencies": {
+    "assetsmanager-brunch": "^1.8.1",
     "brunch": "^2.5.3",
     "clean-css-brunch": "^2.0.0",
     "coffee-script-brunch": "^2.0.0",
