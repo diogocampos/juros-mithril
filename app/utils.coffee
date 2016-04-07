@@ -18,3 +18,10 @@ module.exports =
 
   icon: (name, attrs) ->
     m "i.fa.fa-#{name}", attrs
+
+
+  message: ({type, title}, children) ->
+    m '.message', class: (if type then "is-#{type}" else ''), [
+      m '.message-header', title
+      m '.message-body', children
+    ]
