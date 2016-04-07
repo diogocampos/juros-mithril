@@ -14,3 +14,7 @@ module.exports =
 
     view: (ctlr, attrs, children) ->
       ctlr.render attrs, children
+
+
+  icon: (name, attrs) ->
+    m "i.fa.fa-#{name}", attrs
