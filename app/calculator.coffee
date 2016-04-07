@@ -36,7 +36,8 @@ createComponent class Calculator
           field = fields[name]
           m NumberInput,
             label: field.label
-            onInput: prop
+            type: field.type
+            binding: prop
 
       m '.columns', m '.column',
         calculatorButtons

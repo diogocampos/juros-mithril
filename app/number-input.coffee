@@ -2,6 +2,7 @@
 
 m = require 'mithril'
 
+{formatNumber, parseDigits} = require './format'
 {createComponent, icon} = require './utils'
 
 
@@ -14,23 +15,39 @@ Icon =
 module.exports =
 createComponent class NumberInput
 
-  constructor: ({@onInput}) -> #
-
-  handleInput: (event) ->
-    @onInput parseFloat event.target.value
+  constructor: ({@type, @binding}) -> #
 
 
-  render: ({label, type, @onInput}) ->
+  handleKeyDown: (event) ->
+    char = String.fromCharCode event.keyCode
+    return if char is '\t' or event.ctrlKey or event.metaKey
+
+    event.preventDefault()
+    digits = event.target.value.replace(/[.,]/g, '').split ''
+
+    if /\d/.test char
+      digits.push char
+    else if char is '\b'
+      digits.pop()
+
+    @binding parseDigits digits, @type
+
+
+  render: ({label, @type, @binding}) ->
+    value = @binding()
+
     m 'p.control', [
       m 'label.label', label
 
       m '.control.has-icon', [
         m 'input.input.is-text-right.is-large',
           type: 'text'
-          placeholder: '0'
-          oninput: @handleInput
+          pattern: '\\d*'
+          placeholder: formatNumber 0, @type
+          value: if value then formatNumber value, @type else ''
+          onkeydown: @handleKeyDown
 
-        icon Icon[type],
+        icon Icon[@type],
           style:
            'font-size': '150%'
            'line-height': '32px'

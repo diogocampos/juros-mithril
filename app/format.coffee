@@ -27,3 +27,18 @@ module.exports =
       if decimal then Separator.DECIMAL + decimal
       if annotated then format.suffix
     ].join ''
+
+
+  parseDigits: (digits, type) ->
+    fixed = Format[type]?.fixed or 0
+    string = digits.join ''
+    len = string.length
+
+    if len <= fixed
+      integer = '0'
+      decimal = Array(fixed - len + 1).join('0') + string
+    else
+      integer = string.slice 0, len - fixed
+      decimal = string.slice len - fixed
+
+    parseFloat integer + (if decimal then '.' + decimal else '')
