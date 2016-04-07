@@ -5,6 +5,12 @@ m = require 'mithril'
 {createComponent, icon} = require './utils'
 
 
+Icon =
+  currency: 'dollar'
+  integer: 'hashtag'
+  percentage: 'percent'
+
+
 module.exports =
 createComponent class NumberInput
 
@@ -14,14 +20,16 @@ createComponent class NumberInput
     @onInput parseFloat event.target.value
 
 
-  render: ({label, @onInput}) ->
+  render: ({label, type, @onInput}) ->
     m 'p.control', [
       m 'label.label', label
 
-      m '.control', [
+      m '.control.has-icon', [
         m 'input.input',
           type: 'text'
           placeholder: '0'
           oninput: @handleInput
+
+        icon Icon[type]
       ]
     ]
