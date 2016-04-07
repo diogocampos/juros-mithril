@@ -25,11 +25,16 @@ createComponent class NumberInput
       m 'label.label', label
 
       m '.control.has-icon', [
-        m 'input.input',
+        m 'input.input.is-text-right.is-large',
           type: 'text'
           placeholder: '0'
           oninput: @handleInput
 
-        icon Icon[type]
+        icon Icon[type],
+          style:
+           'font-size': '150%'
+           'line-height': '32px'
+           'height': '32px'
+           'width': '32px'
       ]
     ]
