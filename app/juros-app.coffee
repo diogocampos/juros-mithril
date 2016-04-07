@@ -4,6 +4,8 @@ m = require 'mithril'
 
 Calculator = require './calculator'
 Tabs = require './tabs'
+
+{getInstallment, getInterest, getTotal} = require './interest'
 {createComponent} = require './utils'
 
 
@@ -38,10 +40,21 @@ FIELDS =
 InterestCalculator = m.component Calculator,
   fields: FIELDS
   inputs: ['price', 'deposit', 'length', 'installment']
-  calculate: -> interest: 0, total: 0
+
+  calculate: ({price, deposit, length, installment}) ->
+    try
+      interest: getInterest price, deposit, length, installment
+      total: getTotal deposit, length, installment
+    catch
+      error: true
 
 
 InstallmentCalculator = m.component Calculator,
   fields: FIELDS
   inputs: ['price', 'deposit', 'length', 'interest']
-  calculate: -> installment: 0, total: 0
+
+  calculate: ({price, deposit, length, interest}) ->
+    installment = getInstallment price, deposit, length, interest
+
+    installment: installment
+    total: getTotal deposit, length, installment
