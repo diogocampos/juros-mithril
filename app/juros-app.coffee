@@ -53,5 +53,8 @@ InstallmentCalculator = m.component Calculator,
   calculate: ({price, deposit, length, interest}) ->
     installment = getInstallment price, deposit, length, interest
 
-    installment: installment
-    total: getTotal deposit, length, installment
+    if isNaN installment
+      error: true
+    else
+      installment: installment
+      total: getTotal deposit, length, installment
