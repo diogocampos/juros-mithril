@@ -21,7 +21,7 @@ createComponent class Tabs
         m '.header-left', style: {'font-size': '18px'},
           for id, attrs of tabs
             m 'a.header-tab',
-              class: if id is @active then 'is-active' else ''
+              class: if id is @active then 'is-active'
               onclick: @handleClick id
               [
                 m 'span.icon', icon attrs.icon

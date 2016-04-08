@@ -15,17 +15,14 @@ createComponent class JurosApp
   constructor: ->
     @tabs =
       interest:
-        title: 'Juros'
-        icon: 'percent'
+        title: 'Juros', icon: 'percent'
         children: InterestCalculator
-
       installment:
-        title: 'Parcela'
-        icon: 'dollar'
+        title: 'Parcela', icon: 'dollar'
         children: InstallmentCalculator
 
   render: ->
-    m Tabs, tabs: @tabs, initial: 'interest'
+    m Tabs, {@tabs, initial: 'interest'}
 
 
 FIELDS =
