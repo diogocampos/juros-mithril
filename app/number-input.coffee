@@ -18,6 +18,13 @@ createComponent class NumberInput
   constructor: ({@type, @binding}) -> #
 
 
+  handleFocus: (event) ->
+    event.preventDefault()
+    input = event.target
+    end = input.value.length
+    input.setSelectionRange end, end
+
+
   handleKeyDown: (event) ->
     char = String.fromCharCode event.keyCode
     return if char is '\t' or event.ctrlKey or event.metaKey
@@ -45,6 +52,8 @@ createComponent class NumberInput
           pattern: '\\d*'
           placeholder: formatNumber 0, @type
           value: if value then formatNumber value, @type else ''
+          onclick: @handleFocus
+          onfocus: @handleFocus
           onkeydown: @handleKeyDown
 
         icon Icon[@type],
