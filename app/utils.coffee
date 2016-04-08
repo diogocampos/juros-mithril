@@ -25,3 +25,11 @@ module.exports =
       m '.message-header', title
       m '.message-body', children
     ]
+
+
+  modal: ({onClose}, children) ->
+    m '.modal.is-active', [
+      m '.modal-background', onclick: onClose
+      m '.modal-content', children
+      m 'button.modal-close', onclick: onClose
+    ]

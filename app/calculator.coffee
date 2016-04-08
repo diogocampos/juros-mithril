@@ -5,7 +5,7 @@ m = require 'mithril'
 NumberInput = require './number-input'
 
 {formatNumber} = require './format'
-{createComponent, message} = require './utils'
+{createComponent, message, modal} = require './utils'
 
 
 module.exports =
@@ -16,16 +16,16 @@ createComponent class Calculator
     @inputs[name] = m.prop 0 for name in inputs
     @results = null
 
-
-  handleClear: ->
-    @inputs[name] 0 for name of @inputs
-    @results = null
-
-
   handleCalculate: ->
     values = {}
     values[name] = prop() for name, prop of @inputs
     @results = @calculate values
+
+  handleClearInputs: ->
+    @inputs[name] 0 for name of @inputs
+
+  handleClearResults: ->
+    @results = null
 
 
   render: ({fields, @calculate}) ->
@@ -41,11 +41,11 @@ createComponent class Calculator
 
       m '.columns', m '.column',
         calculatorButtons
-          onClear: @handleClear
+          onClear: @handleClearInputs
           onCalculate: @handleCalculate
 
       if @results
-        m '.columns', m '.column',
+        modal onClose: @handleClearResults,
           calculatorResults {@results, fields}
     ]
 
@@ -60,13 +60,13 @@ calculatorButtons = ({onClear, onCalculate}) ->
 calculatorResults = ({results, fields}) ->
   if results.error
     message type: 'danger', title: 'Erro',
-      m 'p', 'Erro no cálculo. Verifique os valores preenchidos.'
+      m 'p', 'Verifique os valores preenchidos.'
 
   else
     message type: 'primary', title: 'Resultado',
-      for name, value of results
-        field = fields[name]
-        m '.columns',
+      m '.columns',
+        for name, value of results
+          field = fields[name]
           m '.column.is-text-centered', [
             m 'p.heading', field.label
             m 'p.title',
