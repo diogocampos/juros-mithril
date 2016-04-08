@@ -2,7 +2,7 @@
 
 m = require 'mithril'
 
-{createComponent, icon} = require './utils'
+{createComponent, icon} = require './helpers'
 
 
 module.exports =

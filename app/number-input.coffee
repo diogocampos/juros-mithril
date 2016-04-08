@@ -3,7 +3,7 @@
 m = require 'mithril'
 
 {formatNumber, parseDigits} = require './format'
-{createComponent, icon} = require './utils'
+{createComponent, icon} = require './helpers'
 
 
 ICON =

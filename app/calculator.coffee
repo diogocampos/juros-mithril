@@ -5,7 +5,7 @@ m = require 'mithril'
 NumberInput = require './number-input'
 
 {formatNumber} = require './format'
-{createComponent, message, modal} = require './utils'
+{createComponent, message, modal} = require './helpers'
 
 
 module.exports =

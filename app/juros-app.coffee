@@ -6,7 +6,7 @@ Calculator = require './calculator'
 Tabs = require './tabs'
 
 {getInstallment, getInterest, getTotal} = require './interest'
-{createComponent} = require './utils'
+{createComponent} = require './helpers'
 
 
 module.exports =
