@@ -17,12 +17,12 @@ createComponent class JurosApp
       interest:
         title: 'Juros'
         icon: 'percent'
-        children: m InterestCalculator
+        children: InterestCalculator
 
       installment:
         title: 'Parcela'
         icon: 'dollar'
-        children: m InstallmentCalculator
+        children: InstallmentCalculator
 
   render: ->
     m Tabs, tabs: @tabs, initial: 'interest'

@@ -31,6 +31,6 @@ createComponent class Tabs
 
       m '.section', m '.container',
         m '.columns',
-          m '.column.is-half.is-offset-quarter',
+          m '.column.is-half.is-offset-quarter', key: @active,
             tabs[@active].children
     ]
