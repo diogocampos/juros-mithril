@@ -4,8 +4,8 @@ m = require 'mithril'
 
 NumberInput = require './number-input'
 
-{formatNumber} = require './format'
 {createComponent, message, modal} = require './helpers'
+{formatNumber} = require '../utils/format'
 
 
 module.exports =

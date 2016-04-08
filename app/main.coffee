@@ -2,7 +2,7 @@
 
 m = require 'mithril'
 
-JurosApp = require './juros-app'
+JurosApp = require './components/juros-app'
 
 
 rootElement = document.getElementById 'app-root'

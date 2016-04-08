@@ -5,8 +5,8 @@ m = require 'mithril'
 Calculator = require './calculator'
 Tabs = require './tabs'
 
-{getInstallment, getInterest, getTotal} = require './interest'
 {createComponent} = require './helpers'
+{getInstallment, getInterest, getTotal} = require '../utils/interest'
 
 
 module.exports =
