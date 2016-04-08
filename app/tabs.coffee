@@ -18,7 +18,7 @@ createComponent class Tabs
     m '', [
 
       m '.header.is-centered.has-shadow', m '.container',
-        m '.header-left',
+        m '.header-left', style: {'font-size': '18px'},
           for id, attrs of tabs
             m 'a.header-tab',
               class: if id is @active then 'is-active' else ''
