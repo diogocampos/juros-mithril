@@ -6,10 +6,12 @@ m = require 'mithril'
 {createComponent, icon} = require './utils'
 
 
-Icon =
+ICON =
   currency: 'dollar'
   integer: 'hashtag'
   percentage: 'percent'
+
+MAX_DIGITS = 17
 
 
 module.exports =
@@ -33,6 +35,7 @@ createComponent class NumberInput
     digits = event.target.value.replace(/[.,]/g, '').split ''
 
     if /\d/.test char
+      return if digits.length >= MAX_DIGITS
       digits.push char
     else if char is '\b'
       digits.pop()
@@ -56,7 +59,7 @@ createComponent class NumberInput
           onfocus: @handleFocus
           onkeydown: @handleKeyDown
 
-        icon Icon[@type],
+        icon ICON[@type],
           style:
            'font-size': '150%'
            'line-height': '32px'
