@@ -20,16 +20,17 @@ module.exports =
     m "i.fa.fa-#{name}", attrs
 
 
-  message: ({type, title}, children) ->
-    m '.message', class: (if type then "is-#{type}" else ''), [
-      m '.message-header', title
-      m '.message-body', children
-    ]
-
-
   modal: ({onClose}, children) ->
     m '.modal.is-active', [
       m '.modal-background', onclick: onClose
       m '.modal-content', children
       m 'button.modal-close', onclick: onClose
+    ]
+
+
+  notification: ({type, title, closeable, onClose}, children) ->
+    m '.notification', class: (if type then "is-#{type}"), [
+      if closeable then m 'button.delete', onclick: onClose
+      if title then m 'p.title.is-5', m 'strong', title
+      children
     ]

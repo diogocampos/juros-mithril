@@ -4,7 +4,7 @@ m = require 'mithril'
 
 NumberInput = require './number-input'
 
-{createComponent, message, modal} = require './helpers'
+{createComponent, modal, notification} = require './helpers'
 {formatNumber} = require '../utils/format'
 
 
@@ -21,8 +21,9 @@ createComponent class Calculator
     values[name] = prop() for name, prop of @inputs
     @results = @calculate values
 
-  handleClearInputs: ->
+  handleClear: ->
     @inputs[name] 0 for name of @inputs
+    @results = null
 
   handleClearResults: ->
     @results = null
@@ -41,7 +42,7 @@ createComponent class Calculator
 
       m '.columns', m '.column',
         calculatorButtons
-          onClear: @handleClearInputs
+          onClear: @handleClear
           onCalculate: @handleCalculate
 
       if @results
@@ -59,16 +60,15 @@ calculatorButtons = ({onClear, onCalculate}) ->
 
 calculatorResults = ({results, fields}) ->
   if results.error
-    message type: 'danger', title: 'Erro',
+    notification type: 'danger', title: 'Erro',
       m 'p', 'Verifique os valores preenchidos.'
 
   else
-    message type: 'primary', title: 'Resultado',
+    notification type: 'primary', title: 'Resultados',
       m '.columns',
         for name, value of results
           field = fields[name]
           m '.column.is-text-centered', [
             m 'p.heading', field.label
-            m 'p.title',
-              formatNumber value, field.type, annotated: true
+            m 'p.title', formatNumber value, field.type, annotated: true
           ]
