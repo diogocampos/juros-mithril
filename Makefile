@@ -4,7 +4,7 @@ build: node_modules/ clean
 watch: node_modules/ clean
 	node_modules/.bin/brunch watch --server
 
-deploy: public/ build
+deploy: public/.git build
 	cd public && git add . && git commit -em 'Deploy to GitHub Pages'
 	git push origin gh-pages
 
@@ -15,7 +15,7 @@ clean:
 node_modules/: package.json
 	npm install
 
-public/:
+public/.git:
 	git worktree add ./public gh-pages
 
 
