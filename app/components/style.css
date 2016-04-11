@@ -8,3 +8,16 @@
   line-height: 32px;
   font-size: 150%;
 }
+
+.header-tab {
+  font-size: 18px;
+}
+
+.is-primary .header-tab {
+  color: white;
+  border-bottom-color: white;
+}
+
+.is-primary .header-tab:not(.is-active):not(:hover) {
+  opacity: 0.5;
+}
