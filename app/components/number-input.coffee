@@ -59,11 +59,6 @@ createComponent class NumberInput
           onfocus: @handleFocus
           onkeydown: @handleKeyDown
 
-        icon ICON[@type],
-          style:
-           'font-size': '150%'
-           'line-height': '32px'
-           'height': '32px'
-           'width': '32px'
+        icon ICON[@type]
       ]
     ]

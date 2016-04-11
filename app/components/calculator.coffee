@@ -52,7 +52,7 @@ createComponent class Calculator
 
 
 calculatorButtons = ({onClear, onCalculate}) ->
-  m 'p.control.is-grouped', style: {'justify-content': 'center'}, [
+  m 'p.control.is-grouped.is-centered', [
     m 'button.button.is-link.is-medium', onclick: onClear, 'Limpar'
     m 'button.button.is-primary.is-medium', onclick: onCalculate, 'Calcular'
   ]

@@ -1,0 +1,10 @@
+.control.is-centered {
+  justify-content: center;
+}
+
+.control.has-icon .input.is-large + .fa {
+  height: 32px;
+  width: 32px;
+  line-height: 32px;
+  font-size: 150%;
+}

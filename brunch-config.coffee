@@ -9,7 +9,9 @@ exports.config =
         'js/vendor.js': /^(?!app)/
 
     stylesheets:
-      joinTo: 'css/vendor.css'
+      joinTo:
+        'css/app.css': /^app/
+        'css/vendor.css': /^(?!app)/
 
   modules:
     autoRequire:
