@@ -16,9 +16,10 @@ createComponent class Tabs
 
 
   render: ({tabs}) ->
-    m '', [
+    style = if navigator.standalone then 'padding-top': '20px' else {}
 
-      m '.hero.is-primary', m '.hero-header',
+    m '', [
+      m '.hero.is-primary', {style}, m '.hero-header',
         m '.header.is-centered', m '.container',
           m '.header-left',
             for id, attrs of tabs
