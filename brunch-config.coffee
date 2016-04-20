@@ -19,8 +19,8 @@ exports.config =
 
   npm:
     styles:
-      'font-awesome': ['css/font-awesome.css']
       'bulma': ['css/bulma.css']
+      'font-awesome': ['css/font-awesome.css']
 
   plugins:
     assetsmanager: copyTo:

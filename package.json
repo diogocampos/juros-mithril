@@ -7,7 +7,7 @@
   },
   "devDependencies": {
     "assetsmanager-brunch": "^1.8.1",
-    "brunch": "^2.5.3",
+    "brunch": "^2.6.6",
     "clean-css-brunch": "^2.0.0",
     "coffee-script-brunch": "^2.0.0",
     "css-brunch": "^2.0.0",
