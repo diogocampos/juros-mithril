@@ -3,7 +3,7 @@
   "dependencies": {
     "bulma": "0.0.17",
     "font-awesome": "^4.5.0",
-    "mithril": "^0.2.3"
+    "mithril": "^0.2.4"
   },
   "devDependencies": {
     "assetsmanager-brunch": "^1.8.1",
