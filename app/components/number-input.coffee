@@ -43,7 +43,7 @@ createComponent class NumberInput
     @binding parseDigits digits, @type
 
 
-  render: ({label, @type, @binding}) ->
+  render: ({label, @type, @binding, onBlur}) ->
     value = @binding()
 
     m 'p.control', [
@@ -58,6 +58,7 @@ createComponent class NumberInput
           onclick: @handleFocus
           onfocus: @handleFocus
           onkeydown: @handleKeyDown
+          onblur: onBlur
 
         icon ICON[@type]
       ]

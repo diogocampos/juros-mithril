@@ -6,6 +6,10 @@ NumberInput = require './number-input'
 
 {createComponent, modal, notification} = require './helpers'
 {formatNumber} = require '../utils/format'
+{storedObject} = require '../utils/storage'
+
+
+Inputs = storedObject 'inputs'
 
 
 module.exports =
@@ -13,16 +17,23 @@ createComponent class Calculator
 
   constructor: ({inputs, @calculate}) ->
     @inputs = {}
-    @inputs[name] = m.prop 0 for name in inputs
+    @inputs[name] = m.prop Inputs.get(name, 0) for name in inputs
     @results = null
 
-  handleCalculate: ->
+  getValues: ->
     values = {}
     values[name] = prop() for name, prop of @inputs
-    @results = @calculate values
+    values
+
+  handleSaveInputs: ->
+    Inputs.assign @getValues()
+
+  handleCalculate: ->
+    @results = @calculate @getValues()
 
   handleClear: ->
     @inputs[name] 0 for name of @inputs
+    @handleSaveInputs()
     @results = null
 
   handleClearResults: ->
@@ -39,6 +50,7 @@ createComponent class Calculator
             label: field.label
             type: field.type
             binding: prop
+            onBlur: @handleSaveInputs
 
       m '.columns', m '.column',
         calculatorButtons
