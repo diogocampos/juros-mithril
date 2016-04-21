@@ -50,7 +50,7 @@ createComponent class NumberInput
       m 'label.label', label
 
       m '.control.has-icon', [
-        m 'input.input.is-text-right.is-large',
+        m 'input.input.has-text-right.is-large',
           type: 'text'
           pattern: '\\d*'
           placeholder: formatNumber 0, @type

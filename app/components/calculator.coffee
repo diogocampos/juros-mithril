@@ -80,7 +80,7 @@ calculatorResults = ({results, fields}) ->
       m '.columns',
         for name, value of results
           field = fields[name]
-          m '.column.is-text-centered', [
+          m '.column.has-text-centered', [
             m 'p.heading', field.label
             m 'p.title', formatNumber value, field.type, annotated: true
           ]
