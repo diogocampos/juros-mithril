@@ -19,12 +19,16 @@ exports.config =
 
   npm:
     styles:
-      'bulma': ['css/bulma.css']
       'font-awesome': ['css/font-awesome.css']
 
   plugins:
     assetsmanager: copyTo:
       'fonts': ['node_modules/font-awesome/fonts/*']
+
+    sass:
+      mode: 'native'
+      options:
+        includePaths: ['node_modules']
 
   server:
     hostname: '0.0.0.0'
