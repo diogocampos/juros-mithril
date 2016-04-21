@@ -28,9 +28,9 @@ module.exports =
     ]
 
 
-  notification: ({type, title, closeable, onClose}, children) ->
+  notification: ({type, title, onClose}, children) ->
     m '.notification', class: (if type then "is-#{type}"), [
-      if closeable then m 'button.delete', onclick: onClose
+      if onClose then m 'button.delete', onclick: onClose
       if title then m 'p.title.is-5', m 'strong', title
       children
     ]
