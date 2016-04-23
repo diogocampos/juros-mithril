@@ -2,7 +2,7 @@
 
 m = require 'mithril'
 
-{createComponent, icon} = require './helpers'
+{createComponent, icon, KeyCode} = require './helpers'
 {formatNumber, parseDigits} = require '../utils/format'
 
 
@@ -24,16 +24,18 @@ createComponent class NumberInput
 
 
   handleKeyDown: (event) ->
-    char = String.fromCharCode event.keyCode
-    return if char is '\t' or event.ctrlKey or event.metaKey
-
+    {keyCode} = event
+    return if event.ctrlKey or event.metaKey or keyCode is KeyCode.TAB
     event.preventDefault()
-    digits = event.target.value.replace(/[.,]/g, '').split ''
 
+    return if event.altKey or event.shiftKey
+
+    char = String.fromCharCode keyCode
+    digits = event.target.value.replace(/[.,]/g, '').split ''
     if /\d/.test char
       return if digits.length >= MAX_DIGITS
       digits.push char
-    else if char is '\b'
+    else if keyCode is KeyCode.BACKSPACE
       digits.pop()
 
     @binding parseDigits digits, @field.type

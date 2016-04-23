@@ -5,6 +5,11 @@ m = require 'mithril'
 
 module.exports =
 
+  KeyCode:
+    BACKSPACE: 8
+    TAB: 9
+
+
   createComponent: (cls) ->
     controller: (attrs, children) ->
       ctlr = new cls attrs, children
