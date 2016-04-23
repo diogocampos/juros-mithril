@@ -49,6 +49,7 @@ createComponent class Calculator
             field: fields[name]
             binding: prop
             onBlur: @handleSaveInputs
+            onSubmit: @handleCalculate
 
       m '.columns', m '.column',
         calculatorButtons

@@ -12,7 +12,7 @@ MAX_DIGITS = 17
 module.exports =
 createComponent class NumberInput
 
-  constructor: ({@field, @binding}) ->
+  constructor: ({@field, @binding, @onSubmit}) ->
     # no-op
 
 
@@ -29,6 +29,8 @@ createComponent class NumberInput
     event.preventDefault()
 
     return if event.altKey or event.shiftKey
+    return event.target.blur() + @onSubmit() if keyCode is KeyCode.ENTER
+    return @binding 0 if keyCode is KeyCode.ESCAPE
 
     char = String.fromCharCode keyCode
     digits = event.target.value.replace(/[.,]/g, '').split ''
@@ -41,7 +43,7 @@ createComponent class NumberInput
     @binding parseDigits digits, @field.type
 
 
-  render: ({@field, @binding, onBlur}) ->
+  render: ({@field, @binding, @onSubmit, onBlur}) ->
     value = @binding()
 
     m 'p.control', [

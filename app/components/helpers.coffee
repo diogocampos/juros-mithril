@@ -8,6 +8,8 @@ module.exports =
   KeyCode:
     BACKSPACE: 8
     TAB: 9
+    ENTER: 13
+    ESCAPE: 27
 
 
   createComponent: (cls) ->
