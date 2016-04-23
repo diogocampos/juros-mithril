@@ -29,7 +29,7 @@ FIELDS =
   installment: type: 'currency'   , label: 'Valor da parcela'
   interest:    type: 'percentage' , label: 'Taxa de juros'
   length:      type: 'integer'    , label: 'Quantidade de parcelas'
-  price:       type: 'currency'   , label: 'Preço à vista'
+  price:       type: 'currency'   , label: 'Total à vista'
   total:       type: 'currency'   , label: 'Total a prazo'
   deposit:     type: 'currency'   , label: 'Entrada'
 
