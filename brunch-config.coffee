@@ -25,6 +25,11 @@ exports.config =
     assetsmanager: copyTo:
       'fonts': ['node_modules/font-awesome/fonts/*']
 
+    postcss:
+      processors: [
+        require('autoprefixer') browsers: ['last 2 versions']
+      ]
+
     sass:
       mode: 'native'
       options:
