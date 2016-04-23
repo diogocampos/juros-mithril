@@ -36,9 +36,13 @@ module.exports =
 
     if len <= fixed
       integer = '0'
-      decimal = Array(fixed - len + 1).join('0') + string
+      decimal = '0'.repeat(fixed - len) + string
     else
       integer = string.slice 0, len - fixed
       decimal = string.slice len - fixed
 
     parseFloat integer + (if decimal then '.' + decimal else '')
+
+
+String::repeat or= (count) ->
+  Array(count + 1).join this
