@@ -45,10 +45,8 @@ createComponent class Calculator
 
       m '.columns', m '.column',
         for name, prop of @inputs
-          field = fields[name]
           m NumberInput,
-            label: field.label
-            type: field.type
+            field: fields[name]
             binding: prop
             onBlur: @handleSaveInputs
 

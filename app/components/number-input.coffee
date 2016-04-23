@@ -6,21 +6,17 @@ m = require 'mithril'
 {formatNumber, parseDigits} = require '../utils/format'
 
 
-ICON =
-  currency: 'dollar'
-  integer: 'hashtag'
-  percentage: 'percent'
-
 MAX_DIGITS = 17
 
 
 module.exports =
 createComponent class NumberInput
 
-  constructor: ({@type, @binding}) -> #
+  constructor: ({@field, @binding}) ->
+    # no-op
 
 
-  handleFocus: (event) ->
+  onFocus: (event) ->
     event.preventDefault()
     input = event.target
     end = input.value.length
@@ -40,26 +36,26 @@ createComponent class NumberInput
     else if char is '\b'
       digits.pop()
 
-    @binding parseDigits digits, @type
+    @binding parseDigits digits, @field.type
 
 
-  render: ({label, @type, @binding, onBlur}) ->
+  render: ({@field, @binding, onBlur}) ->
     value = @binding()
 
     m 'p.control', [
-      m 'label.label', label
+      m 'label.label', @field.label
 
       m '.control.has-icon', [
         m 'input.input.has-text-right.is-large',
           type: 'text'
           pattern: '\\d*'
-          placeholder: formatNumber 0, @type
-          value: if value then formatNumber value, @type else ''
-          onclick: @handleFocus
-          onfocus: @handleFocus
+          placeholder: formatNumber 0, @field.type
+          value: if value then formatNumber value, @field.type else ''
+          onclick: @onFocus
+          onfocus: @onFocus
           onkeydown: @handleKeyDown
           onblur: onBlur
 
-        icon ICON[@type]
+        icon @field.icon
       ]
     ]

@@ -26,12 +26,12 @@ createComponent class JurosApp
 
 
 FIELDS =
-  installment: type: 'currency'   , label: 'Valor da parcela'
-  interest:    type: 'percentage' , label: 'Taxa de juros'
-  length:      type: 'integer'    , label: 'Quantidade de parcelas'
-  price:       type: 'currency'   , label: 'Total à vista'
-  total:       type: 'currency'   , label: 'Total a prazo'
-  deposit:     type: 'currency'   , label: 'Entrada'
+  deposit:     type: 'currency'  , icon: 'dollar'  , label: 'Entrada'
+  installment: type: 'currency'  , icon: 'dollar'  , label: 'Valor da parcela'
+  interest:    type: 'percentage', icon: 'percent' , label: 'Taxa de juros'
+  length:      type: 'integer'   , icon: 'calendar', label: 'Número de parcelas'
+  price:       type: 'currency'  , icon: 'dollar'  , label: 'Total à vista'
+  total:       type: 'currency'  , icon: 'dollar'  , label: 'Total a prazo'
 
 
 InterestCalculator = m.component Calculator,
