@@ -3,19 +3,21 @@
 m = require 'mithril'
 
 {createComponent, icon} = require './helpers'
+{storedValue} = require '../utils/storage'
 
 
 module.exports =
 createComponent class Tabs
 
-  constructor: ({initial}) ->
-    @active = initial
+  constructor: ({default: defaultTab}) ->
+    @activeTab = storedValue 'activeTab', default: defaultTab
 
   handleClick: (id) -> (event) =>
-    @active = id
+    @activeTab id
 
 
   render: ({tabs}) ->
+    activeTab = @activeTab()
     style = if navigator.standalone then 'padding-top': '20px' else {}
 
     m '', [
@@ -24,7 +26,7 @@ createComponent class Tabs
           m '.header-left',
             for id, attrs of tabs
               m 'a.header-tab',
-                class: if id is @active then 'is-active'
+                class: if id is activeTab then 'is-active'
                 onclick: @handleClick id
                 [
                   m 'span.icon', icon attrs.icon
@@ -34,6 +36,6 @@ createComponent class Tabs
 
       m '.section', m '.container',
         m '.columns.is-centered',
-          m '.column.is-half', key: @active,
-            tabs[@active].children
+          m '.column.is-half', key: activeTab,
+            tabs[activeTab].children
     ]

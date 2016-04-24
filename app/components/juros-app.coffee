@@ -22,7 +22,7 @@ createComponent class JurosApp
         children: InstallmentCalculator
 
   render: ->
-    m Tabs, {@tabs, initial: 'interest'}
+    m Tabs, {@tabs, default: 'interest'}
 
 
 FIELDS =
