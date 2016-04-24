@@ -1,18 +1,32 @@
 'use strict'
 
 
-module.exports =
+module.exports = $ =
 
-  storedObject: (storageKey, storage = window.localStorage) ->
-    object = JSON.parse storage.getItem(storageKey) or '{}'
-    save = -> try storage.setItem storageKey, JSON.stringify object
+  storedObject: (storageKey, options = {}) ->
+    object = $.storedValue storageKey, Object.assign options, default: {}
 
     get: (key, defaultValue) ->
-      value = object[key]
+      value = object()[key]
       unless value?
-        object[key] = value = defaultValue
+        object()[key] = value = defaultValue
       value
 
     assign: (source) ->
-      Object.assign object, source
-      save()
+      object Object.assign object(), source
+
+
+  storedValue: (storageKey, {default: defaultValue, storage = localStorage}) ->
+    value = if (json = storage.getItem storageKey) \
+      then JSON.parse json
+      else defaultValue
+
+    getterSetter = (newValue) ->
+      if arguments.length
+        value = newValue
+        try storage.setItem storageKey, JSON.stringify value
+      value
+
+    Object.assign getterSetter,
+      get: -> getterSetter()
+      set: (newValue) -> getterSetter newValue
