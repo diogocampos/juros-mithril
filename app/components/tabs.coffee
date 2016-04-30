@@ -9,11 +9,13 @@ m = require 'mithril'
 module.exports =
 createComponent class Tabs
 
-  constructor: ({default: defaultTab}) ->
+  constructor: ({tabs, default: defaultTab}) ->
     @activeTab = storedValue 'activeTab', default: defaultTab
 
-  handleClick: (id) -> (event) =>
-    @activeTab id
+    @handleClick = {}
+    for id of tabs
+      @handleClick[id] = do (id = id) =>
+        (event) => @activeTab id
 
 
   render: ({tabs}) ->
@@ -27,7 +29,7 @@ createComponent class Tabs
             for id, attrs of tabs
               m 'a.header-tab',
                 class: if id is activeTab then 'is-active'
-                onclick: @handleClick id
+                onclick: @handleClick[id]
                 [
                   m 'span.icon', icon attrs.icon
                   ' '

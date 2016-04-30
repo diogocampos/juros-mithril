@@ -16,14 +16,14 @@ createComponent class NumberInput
     # no-op
 
 
-  onFocus: (event) ->
+  handleFocus: (event) ->
     event.preventDefault()
     input = event.target
     end = input.value.length
     input.setSelectionRange end, end
 
 
-  handleKeyDown: (event) ->
+  handleKeyDown: (event) =>
     {keyCode} = event
     return if event.ctrlKey or event.metaKey or keyCode is KeyCode.TAB
     event.preventDefault()
@@ -55,8 +55,8 @@ createComponent class NumberInput
           pattern: '\\d*'
           placeholder: formatNumber 0, @field.type
           value: if value then formatNumber value, @field.type else ''
-          onclick: @onFocus
-          onfocus: @onFocus
+          onclick: @handleFocus
+          onfocus: @handleFocus
           onkeydown: @handleKeyDown
           onblur: onBlur
 

@@ -25,18 +25,19 @@ createComponent class Calculator
     values[name] = prop() for name, prop of @inputs
     values
 
-  handleSaveInputs: ->
+
+  handleSaveInputs: =>
     Inputs.assign @getValues()
 
-  handleCalculate: ->
+  handleCalculate: =>
     @results = @calculate @getValues()
 
-  handleClear: ->
+  handleClear: =>
     @inputs[name] 0 for name of @inputs
     @handleSaveInputs()
     @results = null
 
-  handleClearResults: ->
+  handleClearResults: =>
     @results = null
 
 
